@@ -129,16 +129,17 @@ Then run python console and import meme_generator as explained above.
 
 ## 3. Modules
 
-app.py: Module that hosts the application alive on server
-- To details about how to run on the server and consume it refer to above topic
+- app.py: Module that hosts the application alive on server
+  - To details about how to run on the server and consume it refer to above topic
 "Run the application in server"
 meme.py: Module that choses photos and sentences to be mixed
-- To details about how to run it refer to above topic "Run from command line interface (CLI)"
-engine.py: Library to perform on a image the operation of adding text
-errors.py: Library with all custom errors used in project
-fileio.py: Library with util functions to read and write files
-ingestor.py: Library to parse input files into objects consumable by engine.py
-parser.py: Library to parse arguments 
+  - To details about how to run it refer to above topic "Run from command line interface (CLI)"
+
+- engine.py: Library to perform on a image the operation of adding text
+- errors.py: Library with all custom errors used in project
+- fileio.py: Library with util functions to read and write files
+- ingestor.py: Library to parse input files into objects consumable by engine.py
+- parser.py: Library to parse arguments 
 
 
 ## 4. Credits
