@@ -32,8 +32,8 @@ env-create: ## (re)create a development environment using tox
 	@echo -e "\r\nYou can activate the environment with:\r\n\r\n$$ source ./.tox/meme_generator/bin/activate\r\n"
 
 env-compile: ## compile requirements.txt / requirements-dev.txt using pip-tools
-	pip-compile --no-index --no-header --no-emit-trusted-host --output-file requirements.txt requirements.in
-	pip-compile --no-index --no-header --no-emit-trusted-host --output-file requirements-dev.txt requirements-dev.in
+	pip-compile --no-header --no-emit-trusted-host --output-file requirements.txt requirements.in
+	pip-compile --no-header --no-emit-trusted-host --output-file requirements-dev.txt requirements-dev.in
 
 env-sync: ## synchornize requirements.txt /requirements-dev.txt with tox virtualenv using pip tools
 	pip-sync requirements.txt requirements-dev.txt

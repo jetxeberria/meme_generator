@@ -33,8 +33,8 @@ Activate environment
 activate
 ```
 
-Now you're ready to run package well from command line interface or well from
-a python console
+Now you're ready to run package well from command line interface, from
+a python console or well in server application mode
 
 #### Run from command line interface (CLI)
 
@@ -82,6 +82,17 @@ python
 ```
 
 #### Run the application in server
+
+To run application on localhost server, go to app file and run it:
+
+```
+cd meme_generator
+PYTHONPATH=$(pwd)/.. python app.py
+```
+
+On standard output you'll see some Flask messages. The last one says  `Running on http://127.0.0.1:5000/`, you can interact with application going to pointed URL.
+
+There you can both create a new meme giving all arguments or request a random one.
 
 ### From package
 

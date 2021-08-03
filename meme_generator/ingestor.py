@@ -2,6 +2,7 @@
 
 from typing import List
 from abc import ABC, abstractmethod
+import pandas
 
 from meme_generator.quote_engine import QuoteModel
 from meme_generator.errors import (NotImplementedError,
@@ -28,8 +29,8 @@ class IngestorInterface(ABC):
         raise NotImplementedError
 
 
-class IngestorPdf(IngestorInterface):
-    """Class to ingest QuoteModels given a PDF file."""
+class PdfIngestor(IngestorInterface):
+    """Class to ingest QuoteModels given a PDF file using subprocess."""
 
     extension = ".pdf"
 
@@ -44,12 +45,12 @@ class IngestorPdf(IngestorInterface):
     def parse(cls, path: str) -> List[QuoteModel]:
         """Parse given file into QuoteModel objects."""
         tmp_file = convert_pdf_to_txt(path)
-        parsed = IngestorTxt.parse(tmp_file)
+        parsed = TextIngestor.parse(tmp_file)
         system_remove_file(tmp_file)
         return parsed
 
 
-class IngestorTxt(IngestorInterface):
+class TextIngestor(IngestorInterface):
     """Class to ingest QuoteModels given a TXT file."""
 
     extension = ".txt"
@@ -69,7 +70,7 @@ class IngestorTxt(IngestorInterface):
         return models
 
 
-class IngestorDocx(IngestorInterface):
+class DocxIngestor(IngestorInterface):
     """Class to ingest QuoteModels given a DOCX file."""
 
     extension = ".docx"
@@ -89,7 +90,7 @@ class IngestorDocx(IngestorInterface):
         return models
 
 
-class IngestorCsv(IngestorInterface):
+class CsvIngestor(IngestorInterface):
     """Class to ingest QuoteModels given a CSV file."""
 
     extension = ".csv"
@@ -103,9 +104,10 @@ class IngestorCsv(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse given file into QuoteModel objects."""
-        contents = read_csv(path, header=True)
-        models = [QuoteModel(d["body"], d["author"]) for d in contents]
+        """Parse given file into QuoteModel objects using pandas library."""
+        contents = pandas.read_csv(path)
+        models = [QuoteModel(d["body"], d["author"])
+                  for i, d in contents.iterrows()]
         return models
 
 
@@ -115,7 +117,7 @@ class Ingestor(IngestorInterface):
     Supports PDF, CSV, TXT and DOCX formats.
     """
 
-    ingestors = [IngestorPdf, IngestorCsv, IngestorTxt, IngestorDocx]
+    ingestors = [PdfIngestor, CsvIngestor, TextIngestor, DocxIngestor]
 
     @classmethod
     def can_ingest(cls, path: str) -> bool:

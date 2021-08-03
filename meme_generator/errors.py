@@ -23,3 +23,7 @@ class OutputFileError(SystemProcessError):
 
 class NoImagesFoundError(Exception):
     """Error to be raised when can't found any image in searched path."""
+
+
+class UrlReadError(Exception):
+    """Error to be raised when can't request a given URL."""

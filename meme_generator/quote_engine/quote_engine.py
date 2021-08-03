@@ -1,12 +1,6 @@
 """Manage the quotes."""
 
 
-class QuoteEngine():
-    """Don't know yet what does."""
-
-    pass
-
-
 class QuoteModel:
     """Encapsulates a quote and her/his author."""
 
@@ -14,3 +8,7 @@ class QuoteModel:
         """Build a QuoteModel given a quote and author."""
         self.body = body
         self.author = author
+
+    def __str__(self):
+        """Humanly friendly print the object."""
+        return f"\"{self.body}\" - {self.author}"

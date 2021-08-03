@@ -3,22 +3,21 @@
 import random
 import string
 import subprocess
+from os import makedirs
+
 import csv
-from datetime import datetime
 import requests
 import json
-from os import makedirs
-from typing import List, Union, Any
-from typing_extensions import OrderedDict
-
+from datetime import datetime
+from typing import List, Any
 from PIL import Image
 from PIL.JpegImagePlugin import JpegImageFile
 from docx import Document
 
-
 from meme_generator.errors import (OpeningFileError,
                                    OutputFileError,
-                                   SystemProcessError)
+                                   SystemProcessError,
+                                   UrlReadError)
 
 
 def convert_pdf_to_txt(in_path: str, out_path: str = None) -> str:
@@ -131,8 +130,11 @@ def make_path(path: str) -> str:
 
 def request_image(url: str):
     """Request an image from url."""
-    response = requests.get(url)
-    response.raise_for_status()
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+    except requests.exceptions.ConnectionError as exc:
+        raise UrlReadError(f"Request to provided URL failed: '{url}'")
     return response.content
 
 
