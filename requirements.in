@@ -1,0 +1,6 @@
+Pillow
+more-itertools==8.2.0
+pip-tools>=5.1.2
+typing-extensions
+python-docx
+flask

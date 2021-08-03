@@ -1,4 +1,4 @@
-"""meme_generator"""
+"""meme_generator."""
 
 from ._meta import (
     __title__,

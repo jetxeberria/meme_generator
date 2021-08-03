@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""meme_generator package metadata"""
+"""meme_generator package metadata."""
 
 __title__ = "meme_generator"
 __description__ = "A package to generate memes"

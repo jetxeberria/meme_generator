@@ -1,4 +1,4 @@
-"""Setup package"""
+"""Setup package."""
 
 import os
 import re
@@ -49,41 +49,55 @@ with open(os.path.join(here, 'README.md'), 'r') as f:
     readme = f.read()
 
 # Cython and build step configuration
+
+
 def _should_cythonize():
-    """True if bdist_wheel and '--cythonize' arguments are found"""
+    """Return True if bdist_wheel and '--cythonize' arguments are found."""
     found = all(x in sys.argv for x in ['bdist_wheel', '--cythonize'])
     if found:
         sys.argv.remove('--cythonize')
 
     return found
 
+
 should_cythonize = _should_cythonize()
 
+
 def _try_cythonize(*args, **kwargs):
-    """If cython is available, cythonize with the provided parameters"""
+    """If cython is available, cythonize with the provided parameters."""
     from Cython.Build import cythonize
 
     return cythonize(*args, **kwargs)
 
 
-def _packages_to_cythonize_patterns(package_names):
-    """Converts a list of package names (as returned by setuptools.find_packages())
-    to glob patterns"""
+def _packages_to_cythonize(package_names):
+    """Convert a list of package names to glob patterns.
+
+    This packages are those returned by setuptools.find_packages().
+    """
     return [package.replace('.', '/') + '/*.py' for package in package_names]
 
 # Custom commands/scripts
-class build_ext(_build_ext): # pylint: disable=too-few-public-methods, invalid-name
-    """Custom build_ext command that:
+
+
+class build_ext(_build_ext):
+    """Custom building of package.
+
+    Custom build_ext command that:
 
     1. Setups appropriate cython configuration
-    2. Fixes compiled builds by adding missing __init__.py files"""
+    2. Fixes compiled builds by adding missing __init__.py files
+    """
+
     init_filename_regex = "^__init__(\\..+)?\\.so$"
     files_to_remove_regex = "^.*\\.(py|c)$"
     files_to_strip_regex = "^.*\\.so$"
 
     def run(self):
-        """This will be called when the bdist_ext step executes"""
+        """Execute building of package.
 
+        This will be called when the bdist_ext step executes.
+        """
         # Setup cython compilation options
         if should_cythonize:
             import Cython.Compiler.Options
@@ -95,32 +109,41 @@ class build_ext(_build_ext): # pylint: disable=too-few-public-methods, invalid-n
 
         # Traverse the build files to:
         #
-        # 1. Remove source files so they are not included on the distribution (only compiled code)
+        # 1. Remove source files so they are not included on the distribution
+        # (only compiled code)
         # 2. Strips compiled files
-        # 3. Create empty __init__.py files to make python recognize the packages
+        # 3. Create empty __init__.py files to make python recognize the
+        # packages
         #
         if should_cythonize:
             target_folders = [x[0] for x in os.walk(self.build_lib)][1:]
             for target_folder in target_folders:
                 for filename in os.listdir(target_folder):
                     target_file = os.path.join(target_folder, filename)
-
-                    if re.match(self.files_to_remove_regex, filename): # remove source files
+                    # remove source files
+                    if re.match(self.files_to_remove_regex, filename):
                         print('removing %s' % target_file)
                         os.remove(target_file)
-                    if re.match(self.files_to_strip_regex, filename): # strip compiled files
+                    # strip compiled files
+                    if re.match(self.files_to_strip_regex, filename):
                         print('stripping %s' % target_file)
-                        subprocess.call(["strip", target_file]) # NOTE: this only works on unix-type systems
+                        # NOTE: this only works on unix-type systems
+                        subprocess.call(["strip", target_file])
 
-                if self._folder_is_package(target_folder): # add empty __init__.py's
+                # add empty __init__.py's
+                if self._folder_is_package(target_folder):
                     target_file = os.path.join(target_folder, '__init__.py')
                     print('creating %s' % target_file)
                     open(target_file, 'a').close()
 
     def _folder_is_package(self, target_folder):
-        """Determines if a folder is a Python package by looking for __init__.py files"""
-        return any([filename for filename in os.listdir(target_folder) \
+        """Determine if a folder is a Python package.
+
+        To determine so, look for __init__.py files.
+        """
+        return any([filename for filename in os.listdir(target_folder)
                     if re.match(self.init_filename_regex, filename)])
+
 
 setup(
     name=meta['__title__'],
@@ -140,8 +163,9 @@ setup(
     package_data=package_data,
     include_package_data=True,
     ext_modules=_try_cythonize(
-        _packages_to_cythonize_patterns(packages)) if should_cythonize else None,
-    python_requires=">=3, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4",
+        _packages_to_cythonize(packages)) if should_cythonize else None,
+    python_requires=(">=3, !=3.0.*, !=3.1.*, !=3.2.*, "
+                     "!=3.3.*, !=3.4.*, !=3.5.*, <4"),
     cmdclass={
         'build_ext': build_ext
     }
