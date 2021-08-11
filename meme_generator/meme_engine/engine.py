@@ -9,7 +9,7 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from PIL.JpegImagePlugin import JpegImageFile
 
-from meme_generator.fileio import (write_image, build_random_filename,
+from meme_generator.fileio import (build_random_filename,
                                    read_image, make_path)
 
 

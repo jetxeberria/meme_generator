@@ -1,7 +1,7 @@
 """Tests of ingestor module."""
 
 from meme_generator.quote_engine import QuoteModel
-from meme_generator.ingestor import Ingestor
+from meme_generator.quote_engine.ingestor import Ingestor
 from tests.helpers.helpers import (quotes_pdf, quotes_txt,
                                    quotes_csv, quotes_docx)
 
