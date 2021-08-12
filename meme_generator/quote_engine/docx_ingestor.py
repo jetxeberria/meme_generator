@@ -2,9 +2,9 @@
 
 from typing import List
 
-from meme_generator.quote_engine import QuoteModel
-from meme_generator.fileio import read_docx
-from meme_generator.quote_engine.interface import IngestorInterface
+from .quote_engine import QuoteModel
+from .interface import IngestorInterface
+from ..fileio import read_docx
 
 
 class DocxIngestor(IngestorInterface):

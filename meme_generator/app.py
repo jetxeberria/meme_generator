@@ -6,9 +6,9 @@ import requests
 from pathlib import Path
 from flask import Flask, render_template, abort, request
 
-from meme_generator.quote_engine.ingestor import Ingestor
-from meme_generator.meme import MemeEngine
-from meme_generator.fileio import (system_remove_file, download_image)
+from .quote_engine.ingestor import Ingestor
+from .meme import MemeEngine
+from .fileio import (system_remove_file, download_image)
 
 app = Flask(__name__)
 

@@ -3,14 +3,13 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from meme_generator.quote_engine import QuoteModel
-from meme_generator.errors import (NotImplementedError,
-                                   InputNotSupportedError)
-from meme_generator.quote_engine.txt_ingestor import TextIngestor
-from meme_generator.quote_engine.pdf_ingestor import PdfIngestor
-from meme_generator.quote_engine.csv_ingestor import CsvIngestor
-from meme_generator.quote_engine.docx_ingestor import DocxIngestor
-from meme_generator.quote_engine.interface import IngestorInterface
+from .quote_engine import QuoteModel
+from .txt_ingestor import TextIngestor
+from .pdf_ingestor import PdfIngestor
+from .csv_ingestor import CsvIngestor
+from .docx_ingestor import DocxIngestor
+from .interface import IngestorInterface
+from ..errors import InputNotSupportedError
 
 
 class Ingestor(IngestorInterface):

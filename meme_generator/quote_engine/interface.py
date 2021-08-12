@@ -3,8 +3,8 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from meme_generator.quote_engine import QuoteModel
-from meme_generator.errors import NotImplementedError
+from .quote_engine import QuoteModel
+from ..errors import NotImplementedError
 
 
 class IngestorInterface(ABC):

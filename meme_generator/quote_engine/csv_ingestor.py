@@ -3,8 +3,8 @@
 from typing import List
 import pandas
 
-from meme_generator.quote_engine import QuoteModel
-from meme_generator.quote_engine.interface import IngestorInterface
+from .quote_engine import QuoteModel
+from .interface import IngestorInterface
 
 
 class CsvIngestor(IngestorInterface):

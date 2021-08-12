@@ -2,11 +2,11 @@
 
 from typing import List
 
-from meme_generator.quote_engine import QuoteModel
-from meme_generator.fileio import (convert_pdf_to_txt,
-                                   system_remove_file)
-from meme_generator.quote_engine.interface import IngestorInterface
-from meme_generator.quote_engine.txt_ingestor import TextIngestor
+from .quote_engine import QuoteModel
+from .interface import IngestorInterface
+from .txt_ingestor import TextIngestor
+from ..fileio import (convert_pdf_to_txt,
+                      system_remove_file)
 
 
 class PdfIngestor(IngestorInterface):
