@@ -4,7 +4,7 @@ from typing import List
 
 from .quote_engine import QuoteModel
 from .interface import IngestorInterface
-from ..fileio import read_txt
+from fileio import read_txt
 
 
 class TextIngestor(IngestorInterface):

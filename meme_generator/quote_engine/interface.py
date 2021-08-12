@@ -4,7 +4,7 @@ from typing import List
 from abc import ABC, abstractmethod
 
 from .quote_engine import QuoteModel
-from ..errors import NotImplementedError
+from errors import NotImplementedError
 
 
 class IngestorInterface(ABC):

@@ -9,8 +9,8 @@ from PIL import ImageFont
 from PIL import ImageDraw
 from PIL.JpegImagePlugin import JpegImageFile
 
-from ..fileio import (build_random_filename,
-                      read_image, make_path)
+from fileio import (build_random_filename,
+                    read_image, make_path)
 
 
 class MemeEngine:
