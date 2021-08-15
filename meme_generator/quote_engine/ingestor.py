@@ -9,7 +9,7 @@ from .pdf_ingestor import PdfIngestor
 from .csv_ingestor import CsvIngestor
 from .docx_ingestor import DocxIngestor
 from .interface import IngestorInterface
-from errors import InputNotSupportedError
+from meme_generator.errors import InputNotSupportedError
 
 
 class Ingestor(IngestorInterface):

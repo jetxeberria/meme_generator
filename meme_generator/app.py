@@ -1,18 +1,20 @@
 """Manages application hosting online."""
 
+import pytest
 import random
 import os
+from os.path import dirname
 import requests
 from pathlib import Path
 from flask import Flask, render_template, abort, request
 
-from .quote_engine.ingestor import Ingestor
-from .meme import MemeEngine
-from .fileio import (system_remove_file, download_image)
+from meme_generator.quote_engine.ingestor import Ingestor
+from meme_generator.meme_engine.engine import MemeEngine
+from meme_generator.fileio import (system_remove_file, download_image)
 
 app = Flask(__name__)
 
-meme = MemeEngine('./static')
+meme = MemeEngine('./meme_generator/static')
 
 
 def setup():
@@ -40,8 +42,9 @@ def meme_rand():
     """Generate a random meme."""
     img = random.choice(imgs)
     quote = random.choice(quotes)
-    path = meme.make_meme(img, quote.body, quote.author)
-    return render_template('meme.html', path=path)
+    meme_path = meme.make_meme(img, quote.body, quote.author)
+    meme_path = get_path_from_static(meme_path)
+    return render_template('meme.html', path=meme_path)
 
 
 @app.route('/create', methods=['GET'])
@@ -57,14 +60,21 @@ def meme_post():
     local_image = download_image(image_url)
     body = request.form['body']
     author = request.form['author']
-    path = meme.make_meme(local_image, body, author)
+    meme_path = meme.make_meme(local_image, body, author)
+    meme_path = get_path_from_static(meme_path)
     system_remove_file(local_image)
-    return render_template('meme.html', path=path)
+    return render_template('meme.html', path=meme_path)
 
 
 def main():
     """Run application."""
     app.run()
+
+
+def get_path_from_static(path):
+    """Discard parent directories of 'static' from path."""
+    path = path.split("/")
+    return "/".join(path[path.index("static"):])
 
 
 if __name__ == "__main__":

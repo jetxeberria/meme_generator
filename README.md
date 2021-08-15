@@ -83,16 +83,17 @@ python
 
 #### Run the application in server
 
-To run application on localhost server, go to app file and run it:
+To run application on localhost server, **keep on parent folder of app file** and run it :
 
 ```
-cd meme_generator
-PYTHONPATH=$(pwd)/.. python app.py
+python meme_generator/app.py
 ```
 
 On standard output you'll see some Flask messages. The last one says  `Running on http://127.0.0.1:5000/`, you can interact with application going to pointed URL.
 
 There you can both create a new meme giving all arguments or request a random one.
+
+Note that when creating your own meme, the given (local/global) URL must point to JPEG-like file. 
 
 ### From package
 

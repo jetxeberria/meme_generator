@@ -3,11 +3,11 @@
 import os
 import random
 
-from quote_engine.ingestor import Ingestor
-from quote_engine import QuoteModel
-from meme_engine.engine import MemeEngine
-from parser import parse_args
-from errors import NoImagesFoundError
+from meme_generator.quote_engine.ingestor import Ingestor
+from meme_generator.quote_engine import QuoteModel
+from meme_generator.meme_engine.engine import MemeEngine
+from meme_generator.parser import parse_args
+from meme_generator.errors import NoImagesFoundError
 
 
 def generate_meme(path=None, body=None, author=None):
