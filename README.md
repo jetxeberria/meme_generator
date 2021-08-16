@@ -86,7 +86,7 @@ python
 To run application on localhost server, **keep on parent folder of app file** and run it :
 
 ```
-python meme_generator/app.py
+PYTHONPATH=$(pwd) python meme_generator/app.py
 ```
 
 On standard output you'll see some Flask messages. The last one says  `Running on http://127.0.0.1:5000/`, you can interact with application going to pointed URL.
