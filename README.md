@@ -42,7 +42,7 @@ You can run package providing no arguments to get a random image mixed with a ra
 quote, both chosen from default repository examples:
 
 ```
-PYTHONPATH=$(pwd) python meme_generator/meme.py
+python meme.py
 ```
 
 You can run package providing just 'body' and 'author' argument. This way the 
@@ -50,7 +50,7 @@ image will be the default example one and the sentence and author the ones you
 give. 'body' and 'author' arguments must be strings.
 
 ```
-PYTHONPATH=$(pwd) python meme_generator/meme.py --body "What a curious bark" --author "Phylosophal_dog"
+python meme.py --body "What a curious bark" --author "Phylosophal_dog"
 ```
 
 You can provide just 'path'. This way the image will be the one you provide and
@@ -58,14 +58,14 @@ the sentence and author will be randomly chosen from default repository examples
 'path' argument must be an absolute or relative path to file from working directory.
 
 ```
-PYTHONPATH=$(pwd) python meme_generator/meme.py --path "./meme_generator/_data/photos/dog/suspicious_1.jpeg"
+python meme.py --path "./_data/photos/dog/suspicious_1.jpeg"
 ```
 
 And, obviously you can provide the three arguments at once, fully customizing 
 your meme.
 
 ```
-PYTHONPATH=$(pwd) python meme_generator/meme.py --path "./meme_generator/_data/photos/dog/suspicious_1.jpeg" --body "... That smells suspicious" --author "Run"
+python meme.py --path "./_data/photos/dog/suspicious_1.jpeg" --body "... That smells suspicious" --author "Run"
 ```
 
 #### Run on a python console
@@ -83,10 +83,11 @@ python
 
 #### Run the application in server
 
-To run application on localhost server, **keep on parent folder of app file** and run it :
+To run application on localhost server, go to folder of app file and run it:
 
 ```
-PYTHONPATH=$(pwd) python meme_generator/app.py
+cd meme_generator
+python app.py
 ```
 
 On standard output you'll see some Flask messages. The last one says  `Running on http://127.0.0.1:5000/`, you can interact with application going to pointed URL.

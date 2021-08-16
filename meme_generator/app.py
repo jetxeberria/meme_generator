@@ -14,7 +14,7 @@ from meme_generator.fileio import (system_remove_file, download_image)
 
 app = Flask(__name__)
 
-meme = MemeEngine('./meme_generator/static')
+meme = MemeEngine('./static')
 
 
 def setup():

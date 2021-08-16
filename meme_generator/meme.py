@@ -16,7 +16,7 @@ def generate_meme(path=None, body=None, author=None):
     quote = None
 
     if path is None:
-        images = "./meme_generator/_data/photos/dog/"
+        images = "./_data/photos/dog/"
         imgs = []
         for root, dirs, files in os.walk(images):
             imgs = [os.path.join(root, name) for name in files]
@@ -29,10 +29,14 @@ def generate_meme(path=None, body=None, author=None):
         img = path
 
     if body is None:
-        quote_files = ['./meme_generator/_data/DogQuotes/DogQuotesTXT.txt',
-                       './meme_generator/_data/DogQuotes/DogQuotesDOCX.docx',
-                       './meme_generator/_data/DogQuotes/DogQuotesPDF.pdf',
-                       './meme_generator/_data/DogQuotes/DogQuotesCSV.csv']
+        quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
+                       './_data/DogQuotes/DogQuotesDOCX.docx',
+                       './_data/DogQuotes/DogQuotesPDF.pdf',
+                       './_data/DogQuotes/DogQuotesCSV.csv']
+        # quote_files = ['./meme_generator/_data/DogQuotes/DogQuotesTXT.txt',
+        #                './meme_generator/_data/DogQuotes/DogQuotesDOCX.docx',
+        #                './meme_generator/_data/DogQuotes/DogQuotesPDF.pdf',
+        #                './meme_generator/_data/DogQuotes/DogQuotesCSV.csv']
         quotes = []
         for f in quote_files:
             quotes.extend(Ingestor.parse(f))
