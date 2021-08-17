@@ -67,7 +67,7 @@ env-upgrade-all: ## upgrade all dependencies
 ### QUALITY
 
 test: ## run tests with pytest
-	py.test
+	PYTHONPATH=$$(pwd)/meme_generator py.test
 
 check-type-annotations-pep484:
 	mypy .
