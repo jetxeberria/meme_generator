@@ -18,7 +18,16 @@ the author, with this pattern:
 Generated memes are automatically saved in a folder "./tmp" created in the working directory, combining the source file name, the author of quote and a 
 random string of 5 characters to avoid overwritting.
 
-## 2. Use
+
+## 2. Dependencies
+
+To run software, you must install some dependencies first:
+
+```
+sudo apt-get install -y xpdf
+```
+
+## 3. Use
 
 
 ### From source
@@ -39,11 +48,20 @@ a python console or well in server application mode
 #### Run from command line interface (CLI)
 
 You can run package providing no arguments to get a random image mixed with a random
-quote, both chosen from default repository examples:
+quote, both chosen from default repository examples. App can be launched in two 
+ways:
 
 ```
+python meme_generator/meme.py
+```
+Or:
+
+```
+cd meme_generator
 python meme.py
 ```
+
+These two ways of launching is extensible to below examples.
 
 You can run package providing just 'body' and 'author' argument. This way the 
 image will be the default example one and the sentence and author the ones you
