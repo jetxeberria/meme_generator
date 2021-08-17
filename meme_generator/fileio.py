@@ -14,10 +14,10 @@ from PIL import Image
 from PIL.JpegImagePlugin import JpegImageFile
 from docx import Document
 
-from meme_generator.errors import (OpeningFileError,
-                                   OutputFileError,
-                                   SystemProcessError,
-                                   UrlReadError)
+from errors import (OpeningFileError,
+                    OutputFileError,
+                    SystemProcessError,
+                    UrlReadError)
 
 
 def convert_pdf_to_txt(in_path: str, out_path: str = None) -> str:

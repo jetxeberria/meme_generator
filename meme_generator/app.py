@@ -1,16 +1,12 @@
 """Manages application hosting online."""
 
-import pytest
 import random
 import os
-from os.path import dirname
-import requests
-from pathlib import Path
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template, request
 
-from meme_generator.quote_engine.ingestor import Ingestor
-from meme_generator.meme_engine.engine import MemeEngine
-from meme_generator.fileio import (system_remove_file, download_image)
+from quote_engine.ingestor import Ingestor
+from meme_engine.engine import MemeEngine
+from fileio import (system_remove_file, download_image)
 
 app = Flask(__name__)
 

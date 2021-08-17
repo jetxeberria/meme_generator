@@ -5,8 +5,8 @@ from typing import List
 from .quote_engine import QuoteModel
 from .interface import IngestorInterface
 from .txt_ingestor import TextIngestor
-from meme_generator.fileio import (convert_pdf_to_txt,
-                                   system_remove_file)
+from fileio import (convert_pdf_to_txt,
+                    system_remove_file)
 
 
 class PdfIngestor(IngestorInterface):

@@ -4,7 +4,7 @@ from typing import List
 
 from .quote_engine import QuoteModel
 from .interface import IngestorInterface
-from meme_generator.fileio import read_docx
+from fileio import read_docx
 
 
 class DocxIngestor(IngestorInterface):
