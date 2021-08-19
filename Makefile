@@ -1,4 +1,4 @@
-.PHONY: docs test help
+.PHONY: test help
 .DEFAULT_GOAL := help
 
 SHELL := /bin/bash
@@ -125,10 +125,8 @@ sdist: clean-build clean-pyc ## build a source distribution (sdist)
 
 clean-all: clean clean-env clean-docker ## remove everything (artifacts, environments, etc.)
 
-clean: clean-build clean-dist clean-pyc clean-test clean-docs ## remove all build, test, coverage and Python artifacts
+clean: clean-build clean-dist clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
 
-clean-docs: ## remove auto-generated docs
-	rm -fr docs/_build
 
 clean-build: ## remove build artifacts
 	rm -fr build/
