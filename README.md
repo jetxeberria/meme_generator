@@ -39,7 +39,7 @@ make env-create
 ```
 Activate environment
 ```
-activate
+source ./.tox/meme_generator/bin/activate
 ```
 
 Now you're ready to run package well from command line interface, from
